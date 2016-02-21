@@ -4,8 +4,7 @@ const React = require('react'),
 const actions = require('../actions')
     , productStore = require('../store');
 
-/**
- */
+
 const ProductViewTableRow = React.createClass({
   handleRowToggled (e) {
     if(e.target.checked === true) {

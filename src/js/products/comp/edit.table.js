@@ -5,8 +5,7 @@ const React = require('react')
 const actions = require('../actions')
     , productStore = require('../store');
 
-/**
- */
+
 const ProductEditTableRow = React.createClass({
   handleRemoveClick (e) {
     e.preventDefault();
