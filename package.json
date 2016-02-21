@@ -1,0 +1,18 @@
+{
+  "name": "react-test",
+  "version": "1.0.0",
+  "description": "Technical test written using React + Reflux",
+  "scripts": {
+    "test": "mocha test/**/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/backdesk/react-test.git"
+  },
+  "author": "James Gardner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/backdesk/react-test/issues"
+  },
+  "homepage": "https://github.com/backdesk/react-test#readme"
+}
