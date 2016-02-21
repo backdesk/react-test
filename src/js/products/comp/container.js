@@ -1,5 +1,6 @@
 const React = require('react')
     , Reflux = require('reflux')
+    , classNames = require('classnames')
     , update = require('react-addons-update');
 
 
@@ -44,8 +45,9 @@ module.exports = React.createClass({
 
   /**
    * Toggle a flag in state to render different views.
+   *
    * This method could be improved by better generalizing the product table or toggling visibility. 
-   * It's also possible to use react  switch between the states.
+   * Could also use react router to switch between the states.
    */
   handleTabClick (e) {
     e.preventDefault();
@@ -58,21 +60,28 @@ module.exports = React.createClass({
   },
 
   render () {
-    let view, action = this.state.action;
+    let view, action = this.state.action, selected = this.state.selected;
 
     if (action === 'view') {
-      view = (<ProductViewTable products={this.state.products} selected={this.state.selected}/>);
+      view = (<ProductViewTable products={this.state.products} selected={selected}/>);
     } else {
-      view = (<ProductEditTable products={this.state.selected} />);
+      view = (<ProductEditTable products={selected} />);
     }
 
+    let tabClass = classNames({
+      'tab' : true,
+      'disabled' : selected.length === 0
+    });
+
     return (
-      <div>
-        <h2>Tesco - MyProduct Cost</h2>
-        <ul className="tab-container">
-          <li className="tab"><a href="#" onClick={this.handleTabClick} data-action="view">view</a></li>
-          <li className="tab"><a href="#" onClick={this.handleTabClick} data-action="amend">amend</a></li>
-        </ul>
+      <div className="product-container">
+        <header>
+          <h2 className="brand">Tesco - MyProduct Cost</h2>
+          <ul className="tab-container">
+            <li className="tab"><a href="#" onClick={this.handleTabClick} data-action="view">view</a></li>
+            <li className={tabClass}><a href="#" onClick={this.handleTabClick} data-action="amend">amend</a></li>
+          </ul>
+        </header>
         <div>
           {view}
         </div>

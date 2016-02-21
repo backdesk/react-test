@@ -6,24 +6,41 @@
   .product-table .product-row:nth-child(odd) {
     background-color: #ddd; }
   .product-table .product-row.highlight {
-    background-color: red; }
+    background-color: #faffbc; }
   .product-table .product-row.disabled {
     color: #eee; }
+  .product-table .product-row td {
+    padding: 10px; }
 
-.tab-container .tab {
-  border: 1px solid black;
+.tab-container {
+  padding: 10px;
   display: inline-block; }
-  .tab-container .tab a {
-    padding: 10px;
-    display: block;
-    min-width: 80px;
-    text-align: center;
-    text-transform: capitalize;
-    background-color: #ccc;
-    color: #000; }
+  .tab-container .tab {
+    border: 1px solid black;
+    display: inline-block;
+    margin-right: 10px; }
+    .tab-container .tab a {
+      padding: 10px;
+      display: block;
+      min-width: 80px;
+      text-align: center;
+      text-transform: capitalize;
+      background-color: #ccc;
+      color: #000; }
+  .tab-container .tab.disabled {
+    border: 1px solid #eee; }
+    .tab-container .tab.disabled a {
+      color: #adadad;
+      background-color: #eee;
+      pointer-events: none;
+      cursor: default; }
 
-.tab-container .tab.disabled {
-  background-color: #eae; }
+body {
+  margin: 0;
+  font-family: sans-serif; }
+
+h1, h2, h3 {
+  margin: 0; }
 
 a {
   text-decoration: none; }
@@ -31,3 +48,10 @@ a {
 ul, li {
   margin: 0;
   padding: 0; }
+
+.product-container header {
+  border-bottom: 1px solid black;
+  padding-left: 20px; }
+  .product-container header .brand {
+    display: inline-block;
+    font-size: 18px; }

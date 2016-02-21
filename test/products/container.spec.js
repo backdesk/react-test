@@ -31,16 +31,16 @@ describe('Product Container', function () {
     view.length.should.equal(1);
   });
 
-  it('should enable the amend tab when there are selected rows in state', () => {
+  it('should enable all tabs when there are selected rows in state', () => {
     let comp = TestUtils.renderIntoDocument(<ProductContainer />);
 
     comp.setState({
       selected : [{}, {}]
     });
 
-    let view = TestUtils.scryRenderedComponentsWithType(comp, ProductEditTable);
+    let tabs = TestUtils.scryRenderedDOMComponentsWithClass(comp, 'disabled');
 
-    //view.length.should.equal(1);
+    tabs.length.should.equal(0);
   });
 
   it('should trigger a load action once mounted', () => {
@@ -55,11 +55,5 @@ describe('Product Container', function () {
     actions.loadProducts.called.should.equal(true);
 
     revert();
-  });
-
-  it('should listen to store events once mounted', () => { 
-    let comp = TestUtils.renderIntoDocument(<ProductContainer />);
-
-    console.log(comp)
   });
 });

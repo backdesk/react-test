@@ -11,11 +11,15 @@
   }
 
   .product-row.highlight {
-    background-color: red;
+    background-color: #faffbc;
   }
 
   .product-row.disabled {
     color: #eee;
+  }
+
+  .product-row td {
+    padding: 10px;
   }
 }
 

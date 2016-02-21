@@ -35458,6 +35458,7 @@ module.exports = Actions;
 
 var React = require('react'),
     Reflux = require('reflux'),
+    classNames = require('classnames'),
     update = require('react-addons-update');
 
 var actions = require('../actions'),
@@ -35504,8 +35505,9 @@ module.exports = React.createClass({
 
   /**
    * Toggle a flag in state to render different views.
+   *
    * This method could be improved by better generalizing the product table or toggling visibility. 
-   * It's also possible to use react  switch between the states.
+   * Could also use react router to switch between the states.
    */
   handleTabClick: function handleTabClick(e) {
     e.preventDefault();
@@ -35519,41 +35521,51 @@ module.exports = React.createClass({
   },
   render: function render() {
     var view = undefined,
-        action = this.state.action;
+        action = this.state.action,
+        selected = this.state.selected;
 
     if (action === 'view') {
-      view = React.createElement(ProductViewTable, { products: this.state.products, selected: this.state.selected });
+      view = React.createElement(ProductViewTable, { products: this.state.products, selected: selected });
     } else {
-      view = React.createElement(ProductEditTable, { products: this.state.selected });
+      view = React.createElement(ProductEditTable, { products: selected });
     }
+
+    var tabClass = classNames({
+      'tab': true,
+      'disabled': selected.length === 0
+    });
 
     return React.createElement(
       'div',
-      null,
+      { className: 'product-container' },
       React.createElement(
-        'h2',
+        'header',
         null,
-        'Tesco - MyProduct Cost'
-      ),
-      React.createElement(
-        'ul',
-        { className: 'tab-container' },
         React.createElement(
-          'li',
-          { className: 'tab' },
-          React.createElement(
-            'a',
-            { href: '#', onClick: this.handleTabClick, 'data-action': 'view' },
-            'view'
-          )
+          'h2',
+          { className: 'brand' },
+          'Tesco - MyProduct Cost'
         ),
         React.createElement(
-          'li',
-          { className: 'tab' },
+          'ul',
+          { className: 'tab-container' },
           React.createElement(
-            'a',
-            { href: '#', onClick: this.handleTabClick, 'data-action': 'amend' },
-            'amend'
+            'li',
+            { className: 'tab' },
+            React.createElement(
+              'a',
+              { href: '#', onClick: this.handleTabClick, 'data-action': 'view' },
+              'view'
+            )
+          ),
+          React.createElement(
+            'li',
+            { className: tabClass },
+            React.createElement(
+              'a',
+              { href: '#', onClick: this.handleTabClick, 'data-action': 'amend' },
+              'amend'
+            )
           )
         )
       ),
@@ -35566,7 +35578,7 @@ module.exports = React.createClass({
   }
 });
 
-},{"../actions":183,"../store":188,"./edit.table":185,"./view.table":186,"react":163,"react-addons-update":32,"reflux":179}],185:[function(require,module,exports){
+},{"../actions":183,"../store":188,"./edit.table":185,"./view.table":186,"classnames":1,"react":163,"react-addons-update":32,"reflux":179}],185:[function(require,module,exports){
 'use strict';
 
 var React = require('react'),

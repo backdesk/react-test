@@ -1,7 +1,11 @@
 .tab-container {
+  padding: 10px;
+  display: inline-block;
+
   .tab {
     border: 1px solid black;
     display: inline-block;
+    margin-right: 10px;
 
     a {
       padding: 10px;
@@ -15,6 +19,13 @@
   }
 
   .tab.disabled {
-    background-color: #eae;
+    border: 1px solid #eee;
+    
+    a {
+      color: #adadad;
+      background-color: #eee;
+      pointer-events: none;
+      cursor: default;
+    }
   }
 }

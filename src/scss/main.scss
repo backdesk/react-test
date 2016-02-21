@@ -1,6 +1,15 @@
 @import 'products';
 @import 'tabs';
 
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
 a {
   text-decoration: none;
 }
@@ -8,4 +17,16 @@ a {
 ul, li {
   margin: 0;
   padding: 0;
+}
+
+.product-container {
+  header {
+    border-bottom: 1px solid black;
+    padding-left: 20px;
+
+    .brand {
+      display: inline-block;
+      font-size: 18px;
+    }
+  }
 }
