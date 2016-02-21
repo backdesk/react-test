@@ -1,5 +1,6 @@
-const React = require('react'),
-      classNames = require('classnames');
+const React = require('react')
+    , _ = require('lodash')
+    , classNames = require('classnames');
 
 const actions = require('../actions')
     , productStore = require('../store');
