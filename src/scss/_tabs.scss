@@ -1,0 +1,20 @@
+.tab-container {
+  .tab {
+    border: 1px solid black;
+    display: inline-block;
+
+    a {
+      padding: 10px;
+      display: block;
+      min-width: 80px;
+      text-align: center;
+      text-transform: capitalize;
+      background-color: #ccc;
+      color: #000;
+    }
+  }
+
+  .tab.disabled {
+    background-color: #eae;
+  }
+}

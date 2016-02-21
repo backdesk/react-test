@@ -1,0 +1,33 @@
+.product-table {
+  border-collapse: collapse;
+  width: 100%; }
+  .product-table .product-row:nth-child(even) {
+    background-color: #ccc; }
+  .product-table .product-row:nth-child(odd) {
+    background-color: #ddd; }
+  .product-table .product-row.highlight {
+    background-color: red; }
+  .product-table .product-row.disabled {
+    color: #eee; }
+
+.tab-container .tab {
+  border: 1px solid black;
+  display: inline-block; }
+  .tab-container .tab a {
+    padding: 10px;
+    display: block;
+    min-width: 80px;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: #ccc;
+    color: #000; }
+
+.tab-container .tab.disabled {
+  background-color: #eae; }
+
+a {
+  text-decoration: none; }
+
+ul, li {
+  margin: 0;
+  padding: 0; }

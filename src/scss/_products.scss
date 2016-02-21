@@ -1,0 +1,21 @@
+.product-table {
+  border-collapse: collapse;
+  width: 100%;
+
+  .product-row:nth-child(even) {
+    background-color: #ccc;
+  }
+
+  .product-row:nth-child(odd) {
+    background-color: #ddd;
+  }
+
+  .product-row.highlight {
+    background-color: red;
+  }
+
+  .product-row.disabled {
+    color: #eee;
+  }
+}
+

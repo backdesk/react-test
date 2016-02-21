@@ -2,6 +2,7 @@
   "name": "react-test",
   "version": "1.0.0",
   "description": "Technical test written using React + Reflux",
+  "main": "src/js/main.js",
   "scripts": {
     "test": "mocha test/**/*.spec.js"
   },
