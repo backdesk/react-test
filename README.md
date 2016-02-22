@@ -30,6 +30,10 @@ Once you have all these things you can run 'gulp' to build and watch assets.
 
 Note: The linting (ESLint)isn't currently configured with any specifics for react or ES6.
 
+## Notes
+
+There are some minor style issues that need addressing (tabs look like buttons for example). With hindsight I could of compacted the table code into something more generic but it's suitable for this example. I'm also not a big fan of storing things like 'visible columns' in state. 
+
 ## Troubleshooting 
 
 If you're having build problems ensure that your version of node is up to date with the latest LTS release. You can move between different versions using 'nvm' or by using 'n' to update. Older versions of node have weaker support for ES6 features - although this shouldn't matter since everything should pass through babel.
