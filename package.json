@@ -4,7 +4,8 @@
   "description": "Technical test written using React + Reflux",
   "main": "src/js/main.js",
   "scripts": {
-    "test": "mocha test/**/*.spec.js"
+    "test": "mocha test/**/*.spec.js",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -34,8 +35,10 @@
     "watchify": "^3.7.0"
   },
   "devDependencies": {
+    "babel-eslint": "^5.0.0",
     "babel-register": "^6.5.2",
     "enzyme": "^2.0.0",
+    "eslint": "^2.2.0",
     "jsdom": "^8.0.4",
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^0.14.7",
