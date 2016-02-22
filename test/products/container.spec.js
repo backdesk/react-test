@@ -1,4 +1,5 @@
 const React = require('react')
+    , Enzyme = require('enzyme')
     , rewire = require('rewire')
     , sinon = require('sinon')
     , TestUtils = require('react-addons-test-utils');
@@ -9,38 +10,36 @@ const ProductContainer = rewire('../../src/js/products/comp/container')
     , ProductEditTable = require('../../src/js/products/comp/edit.table');
 
 describe('Product Container', function () {
-  it('should be a react component', () => {
-    let comp = TestUtils.renderIntoDocument(<ProductContainer />);
-
-    TestUtils.isCompositeComponentWithType(comp, ProductContainer).should.equal(true);
-  });
-
   it('should have two tabs at the top of the screen', () => {
-    let comp = TestUtils.renderIntoDocument(<ProductContainer />);
+    let comp = Enzyme.mount(<ProductContainer />);
 
-    let tabs = TestUtils.scryRenderedDOMComponentsWithClass(comp, 'tab');
-
-    tabs.length.should.equal(2);
+    comp.find('.tab').length.should.equal(2);
   });
 
   it('should select the view tab in the first instance', () => {
-    let comp = TestUtils.renderIntoDocument(<ProductContainer />);
+    let comp = Enzyme.mount(<ProductContainer />);
 
-    let view = TestUtils.scryRenderedComponentsWithType(comp, ProductViewTable);
-
-    view.length.should.equal(1);
+    comp.find(ProductViewTable).length.should.equal(1);
   });
 
   it('should enable all tabs when there are selected rows in state', () => {
-    let comp = TestUtils.renderIntoDocument(<ProductContainer />);
+    let comp = Enzyme.mount(<ProductContainer />);
 
     comp.setState({
       selected : [{}, {}]
     });
 
-    let tabs = TestUtils.scryRenderedDOMComponentsWithClass(comp, 'disabled');
+    comp.find('.disabled').length.should.equal(0);
+  });
 
-    tabs.length.should.equal(0);
+  it('should show the amend table when in amend state', () => {
+    let comp = Enzyme.mount(<ProductContainer />);
+
+    comp.setState({
+      action : 'amend'
+    });
+
+    comp.find(ProductEditTable).length.should.equal(1);
   });
 
   it('should trigger a load action once mounted', () => {
@@ -50,7 +49,7 @@ describe('Product Container', function () {
 
     let revert = ProductContainer.__set__('actions', actions);
     
-    let comp = TestUtils.renderIntoDocument(<ProductContainer />);
+    let comp = Enzyme.mount(<ProductContainer />);
     
     actions.loadProducts.called.should.equal(true);
 
