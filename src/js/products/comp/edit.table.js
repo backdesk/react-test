@@ -51,7 +51,7 @@ module.exports = React.createClass({
     });
 
     let cols = columnLabels.map((label, index) => {
-      return (<td>{label}</td>);
+      return (<td key={_.uniqueId()}>{label}</td>);
     });
 
     return (

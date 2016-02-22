@@ -35661,7 +35661,7 @@ module.exports = React.createClass({
     var cols = columnLabels.map(function (label, index) {
       return React.createElement(
         'td',
-        null,
+        { key: _.uniqueId() },
         label
       );
     });

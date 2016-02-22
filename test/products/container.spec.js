@@ -26,16 +26,18 @@ describe('Product Container', function () {
     let comp = Enzyme.mount(<ProductContainer />);
 
     comp.setState({
-      selected : [{}, {}]
+      selected : [{ tpnd : 1 }, { tpnd : 2 }]
     });
 
-    comp.find('.disabled').length.should.equal(0);
+    comp.find('tab.disabled').length.should.equal(0);
   });
 
   it('should show the amend table when in amend state', () => {
     let comp = Enzyme.mount(<ProductContainer />);
 
     comp.setState({
+      products : [],
+      selected : [],
       action : 'amend'
     });
 
