@@ -26,8 +26,8 @@ const ProductViewTableRow = React.createClass({
   render () {
     let opts = {}, vals = _.values(_.omit(this.props.product, 'uom', 'currency'));
 
-    let cols = vals.map((val, index) => {
-      return (<td key={index}>{val}</td>)
+    let cols = vals.map((val) => {
+      return (<td key={_.uniqueId()}>{val}</td>)
     });
 
     let rowClass = classNames({ 
@@ -79,7 +79,7 @@ module.exports = React.createClass({
     });
 
     let cols = columnLabels.map((label, index) => {
-      return (<td>{label}</td>);
+      return (<td key={_.uniqueId()}>{label}</td>);
     });
 
     return (

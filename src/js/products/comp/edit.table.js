@@ -21,8 +21,8 @@ const ProductEditTableRow = React.createClass({
   render () {
     let vals = _.values(_.pick(this.props.product, 'description', 'caseSize', 'uom', 'tpnd', 'basicCost', 'offInvoiceDiscount', 'invoiceCost', 'currency'));
 
-    let cols = vals.map((val, index) => {
-      return (<td key={index}>{val}</td>)
+    let cols = vals.map((val) => {
+      return (<td key={_.uniqueId()}>{val}</td>)
     });
 
     return (      

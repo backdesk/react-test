@@ -35600,10 +35600,10 @@ var ProductEditTableRow = React.createClass({
   render: function render() {
     var vals = _.values(_.pick(this.props.product, 'description', 'caseSize', 'uom', 'tpnd', 'basicCost', 'offInvoiceDiscount', 'invoiceCost', 'currency'));
 
-    var cols = vals.map(function (val, index) {
+    var cols = vals.map(function (val) {
       return React.createElement(
         'td',
-        { key: index },
+        { key: _.uniqueId() },
         val
       );
     });
@@ -35718,10 +35718,10 @@ var ProductViewTableRow = React.createClass({
     var opts = {},
         vals = _.values(_.omit(this.props.product, 'uom', 'currency'));
 
-    var cols = vals.map(function (val, index) {
+    var cols = vals.map(function (val) {
       return React.createElement(
         'td',
-        { key: index },
+        { key: _.uniqueId() },
         val
       );
     });
@@ -35786,7 +35786,7 @@ module.exports = React.createClass({
     var cols = columnLabels.map(function (label, index) {
       return React.createElement(
         'td',
-        null,
+        { key: _.uniqueId() },
         label
       );
     });
