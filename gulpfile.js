@@ -8,7 +8,9 @@ var gulp = require('gulp')
   , babelify = require('babelify')
   , watchify = require('watchify')
   , sass = require('gulp-sass')
-  , source = require('vinyl-source-stream');
+  , source = require('vinyl-source-stream')
+  , uglify = require('gulp-uglify')
+  , buffer = require('vinyl-buffer');
 
 
 var pkg = require('./package.json');
@@ -19,6 +21,8 @@ var bundle = function (bundler) {
   bundler.bundle()
     .on('error', function(err) { gutil.log(err); this.emit('end'); })
     .pipe(source('main.js'))
+    .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest('./dist/js'))
 };
 
@@ -41,7 +45,7 @@ gulp.task('watch-scss', function () {
 });
 
 // Watchify on browserify with default caching options (watchify.args).
-gulp.task('js', function () { 
+gulp.task('js', function () {
   var bundler = watchify(browserify(pkg.main, watchify.args).transform(babelify));
 
   // Initial call.
