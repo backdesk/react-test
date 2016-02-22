@@ -9,8 +9,15 @@
     background-color: #faffbc; }
   .product-table .product-row.disabled {
     color: #eee; }
-  .product-table .product-row td {
+  .product-table .product-row td, .product-table thead td {
     padding: 10px; }
+  .product-table .product-row .col-amend {
+    text-align: center; }
+  .product-table .product-row .remove > a {
+    display: inline-block;
+    padding: 5px;
+    color: #000;
+    border: 1px solid #000; }
 
 .tab-container {
   padding: 10px;
@@ -55,3 +62,6 @@ ul, li {
   .product-container header .brand {
     display: inline-block;
     font-size: 18px; }
+
+td {
+  font-size: 14px; }

@@ -18,8 +18,19 @@
     color: #eee;
   }
 
-  .product-row td {
+  .product-row td, thead td {
     padding: 10px;
+  }
+
+  .product-row .col-amend {
+    text-align: center;
+  }
+
+  .product-row .remove > a {
+    display: inline-block;
+    padding: 5px;
+    color: #000;
+    border: 1px solid #000;
   }
 }
 

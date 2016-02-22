@@ -35588,6 +35588,8 @@ var React = require('react'),
 var actions = require('../actions'),
     productStore = require('../store');
 
+var columnLabels = ['Description', 'Case Size', 'UOM', 'TPND', 'Cost', 'Off Inv Desc', 'Inv Cost', 'Currency Code', 'Price', 'Off Inv Disc', 'Inv Price', 'Currency Code', ''];
+
 var ProductEditTableRow = React.createClass({
   displayName: 'ProductEditTableRow',
   handleRemoveClick: function handleRemoveClick(e) {
@@ -35608,7 +35610,7 @@ var ProductEditTableRow = React.createClass({
 
     return React.createElement(
       'tr',
-      null,
+      { className: 'product-row' },
       cols,
       React.createElement(
         'td',
@@ -35632,7 +35634,7 @@ var ProductEditTableRow = React.createClass({
       ),
       React.createElement(
         'td',
-        null,
+        { className: 'remove' },
         React.createElement(
           'a',
           { href: '#', onClick: this.handleRemoveClick },
@@ -35643,6 +35645,12 @@ var ProductEditTableRow = React.createClass({
   }
 });
 
+/**
+ * See my notes on view table.
+ *
+ * With more consideration perhaps it would of been better to derive both the edit and view tables from a stateless
+ * component that simply handles structure and wireup.
+ */
 module.exports = React.createClass({
   displayName: 'exports',
   render: function render() {
@@ -35650,10 +35658,26 @@ module.exports = React.createClass({
       return React.createElement(ProductEditTableRow, { key: product.tpnd, product: product });
     });
 
+    var cols = columnLabels.map(function (label, index) {
+      return React.createElement(
+        'td',
+        null,
+        label
+      );
+    });
+
     return React.createElement(
       'table',
       { className: 'product-table editor' },
-      React.createElement('thead', null),
+      React.createElement(
+        'thead',
+        null,
+        React.createElement(
+          'tr',
+          null,
+          cols
+        )
+      ),
       React.createElement(
         'tbody',
         null,
@@ -35669,11 +35693,18 @@ module.exports = React.createClass({
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react'),
+    _ = require('lodash'),
     classNames = require('classnames');
 
 var actions = require('../actions'),
     productStore = require('../store');
 
+var columnLabels = ['TPNB', 'TPND', 'Description', 'Status', 'Start Date', 'End Date', 'Division', 'Subgroup', 'Supplier', 'QS No', 'Basic', 'Off Invoice Discount', 'Invoice', 'Net', 'Amend'];
+
+/**
+ * Individual row component for the view table.
+ * Rows do actually have some logic of their own driving behaviors. These should probably stay separate.
+ */
 var ProductViewTableRow = React.createClass({
   displayName: 'ProductViewTableRow',
   handleRowToggled: function handleRowToggled(e) {
@@ -35685,7 +35716,7 @@ var ProductViewTableRow = React.createClass({
   },
   render: function render() {
     var opts = {},
-        vals = _.values(this.props.product);
+        vals = _.values(_.omit(this.props.product, 'uom', 'currency'));
 
     var cols = vals.map(function (val, index) {
       return React.createElement(
@@ -35715,15 +35746,29 @@ var ProductViewTableRow = React.createClass({
       cols,
       React.createElement(
         'td',
-        null,
+        { className: 'col-amend' },
         React.createElement('input', _extends({ type: 'checkbox', onChange: this.handleRowToggled }, opts))
       )
     );
   }
 });
 
+/**
+ * A much more re-usable approach would have been to abstract the table itself into a standalone component
+ * that takes in different row components and renders them against a provided list and configuration.
+ *
+ * Column names and cherry picking the desired fields would be part of this configuration rather than me
+ * hard-coding calls to _.omit etc.
+ * 
+ */
 module.exports = React.createClass({
   displayName: 'exports',
+
+  propTypes: {
+    selected: React.PropTypes.array.isRequired,
+    products: React.PropTypes.array.isRequired
+  },
+
   render: function render() {
     var _this = this;
 
@@ -35738,10 +35783,26 @@ module.exports = React.createClass({
       return React.createElement(ProductViewTableRow, { key: product.tpnd, product: product, highlight: highlight, selected: selected });
     });
 
+    var cols = columnLabels.map(function (label, index) {
+      return React.createElement(
+        'td',
+        null,
+        label
+      );
+    });
+
     return React.createElement(
       'table',
       { className: 'product-table viewer' },
-      React.createElement('thead', null),
+      React.createElement(
+        'thead',
+        null,
+        React.createElement(
+          'tr',
+          null,
+          cols
+        )
+      ),
       React.createElement(
         'tbody',
         null,
@@ -35751,7 +35812,7 @@ module.exports = React.createClass({
   }
 });
 
-},{"../actions":183,"../store":188,"classnames":1,"react":163}],187:[function(require,module,exports){
+},{"../actions":183,"../store":188,"classnames":1,"lodash":30,"react":163}],187:[function(require,module,exports){
 module.exports=[
   {
     "tpnb": 90397520,
